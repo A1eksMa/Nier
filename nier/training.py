@@ -9,11 +9,12 @@ from .perceptron import _forward
 
 
 def train(
-    net:    Perceptron,
-    X:      List[List[float]],
-    y:      List[List[float]],
-    epochs: int   = 1000,
-    alfa:   float = 0.01,
+    net:     Perceptron,
+    X:       List[List[float]],
+    y:       List[List[float]],
+    epochs:  int   = 1000,
+    alfa:    float = 0.01,
+    shuffle: bool  = True,
 ) -> TrainingResult:
     # mutable copies of weights for the training loop
     weights: List[NDArray] = [w.copy() for w in net.weights]
@@ -22,7 +23,14 @@ def train(
     for _ in range(epochs):
         epoch_loss = 0.0
 
-        for xi, yi in zip(X, y):
+        if shuffle:
+            idx    = np.random.permutation(len(X))
+            X_iter = [X[i] for i in idx]
+            y_iter = [y[i] for i in idx]
+        else:
+            X_iter, y_iter = X, y
+
+        for xi, yi in zip(X_iter, y_iter):
             values = _forward(net.layers, weights, xi)
             weights, sample_loss = _backprop(net, weights, values, np.array(yi, dtype=float), alfa)
             epoch_loss += sample_loss
