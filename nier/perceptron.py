@@ -8,11 +8,23 @@ from .models import Layer, Perceptron
 from .validate import validate_layers
 
 
+def _init_weights(fan_in: int, fan_out: int, activation: "Activation") -> NDArray:
+    from .models import Activation
+    if activation == Activation.RELU:
+        # He initialization: keeps variance stable through ReLU layers
+        std = np.sqrt(2.0 / fan_in)
+        return np.random.normal(0.0, std, size=(fan_in, fan_out))
+    else:
+        # Xavier / Glorot uniform: keeps variance stable for Sigmoid and Linear
+        limit = np.sqrt(6.0 / (fan_in + fan_out))
+        return np.random.uniform(-limit, limit, size=(fan_in, fan_out))
+
+
 def create(layers: List[Layer]) -> Perceptron:
     validate_layers(layers)
 
     weights = tuple(
-        np.random.uniform(-1.0, 1.0, size=(layers[i].size, layers[i + 1].size))
+        _init_weights(layers[i].size, layers[i + 1].size, layers[i + 1].activation)
         for i in range(len(layers) - 1)
     )
 
