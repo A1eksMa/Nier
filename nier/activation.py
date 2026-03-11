@@ -19,8 +19,8 @@ def apply(x: NDArray, activation: Activation) -> NDArray:
 
 def derivative(x: NDArray, activation: Activation) -> NDArray:
     if activation == Activation.SIGMOID:
-        s = apply(x, activation)
-        return s * (1.0 - s)
+        # x is the post-activation output σ(z); derivative is x*(1-x)
+        return x * (1.0 - x)
 
     if activation == Activation.RELU:
         return np.where(x > 0.0, 1.0, 0.0)
