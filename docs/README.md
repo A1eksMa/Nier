@@ -17,9 +17,9 @@ Every example includes:
 | Directory | Activation | Task |
 |---|---|---|
 | [`celsius_to_fahrenheit/`](celsius_to_fahrenheit/) | Linear | Learning the formula F = 1.8 × C + 32 |
-| [`spam_detection/`](spam_detection/) | Sigmoid | Binary classification: spam or not spam |
-| [`house_price/`](house_price/) | ReLU + Linear | Regression: predicting apartment price |
-| [`tic_tac_toe/`](tic_tac_toe/) | Sigmoid | Pattern recognition: did X win the game? |
+| [`iris_setosa/`](iris_setosa/) | Sigmoid | Recognising Iris Setosa from petal measurements (Fisher dataset, 1936) |
+| [`house_price/`](house_price/) | ReLU + Linear | Regression: predicting apartment price from area and floor |
+| [`tic_tac_toe/`](tic_tac_toe/) | Sigmoid | Pattern recognition: did X win the tic-tac-toe game? |
 
 ---
 
