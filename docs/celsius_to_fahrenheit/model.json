@@ -1,0 +1,22 @@
+{
+  "layers": [
+    {
+      "size": 2,
+      "activation": "linear"
+    },
+    {
+      "size": 1,
+      "activation": "linear"
+    }
+  ],
+  "weights": [
+    [
+      [
+        0.9999999999999882
+      ],
+      [
+        6.3019792380407764e-15
+      ]
+    ]
+  ]
+}
